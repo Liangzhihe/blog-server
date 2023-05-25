@@ -1,11 +1,23 @@
-import { Sequelize } from "sequelize-typescript"
+import path from 'path'
+import fs from 'fs'
+import * as dotenv from 'dotenv'
+import { Sequelize } from 'sequelize-typescript'
+
+// Load environment variables
+const envFileContent = fs.readFileSync(
+  path.join(__dirname, `../../env/.env.${process.env.NODE_ENV}`),
+  'utf8'
+)
+const { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_DATABASE } = dotenv.parse(envFileContent)
 
 const sequelize = new Sequelize({
-  dialect: 'mysql', // 是否可省略？
-  database: process.env.DB_NAME || 'test',
-  username: process.env.DB_USER || 'root',
-  password: process.env.DB_PASSWORD || 'root',
-  host: process.env.DB_HOST || 'localhost',
+  dialect: 'mysql',
+  database: DB_DATABASE || 'test',
+  username: DB_USER || 'root',
+  password: DB_PASSWORD || 'root',
+  host: DB_HOST || 'localhost',
+  port: Number(DB_PORT) || 3306,
+  models: [path.join(__dirname, '../services')],
 })
 
 export default sequelize

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { IPostFilterOptions, Post } from '../services/postService'
+import Post, { IPostFilterOptions } from '../services/postService'
 
 export const postController = {
   // get all posts

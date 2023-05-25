@@ -4,12 +4,10 @@ import {
   Table,
   Column,
   DataType,
-  PrimaryKey,
   UpdatedAt,
   CreatedAt,
-  DeletedAt,
 } from 'sequelize-typescript'
-import { Tag } from './tagService'
+import Tag from './tagService'
 
 
 export interface IPostFilterOptions {
@@ -20,9 +18,8 @@ export interface IPostFilterOptions {
 }
 
 @Table({ tableName: 'posts' })
-export class Post extends Model {
-  @PrimaryKey
-  @Column({ type: DataType.UUID, defaultValue: DataTypes.UUIDV4 })
+export default class Post extends Model {
+  @Column({ primaryKey: true, type: DataType.UUID, defaultValue: DataTypes.UUIDV4 })
   id!: string
 
   @Column({ type: DataType.STRING })
@@ -32,16 +29,12 @@ export class Post extends Model {
   content!: string
 
   @CreatedAt
-  @Column({ field: 'created_at' })
+  @Column({ field: 'created_at', type: DataType.DATE })
   createdAt!: Date
 
   @UpdatedAt
-  @Column({ field: 'updated_at' })
+  @Column({ field: 'updated_at', type: DataType.DATE })
   updatedAt!: Date
-
-  @DeletedAt
-  @Column({ field: 'deleted_at' })
-  deletedAt!: Date
 
   static getAllPosts = async (): Promise<Post[]> => {
     return await Post.findAll()

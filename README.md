@@ -22,8 +22,6 @@ lint the code by eslint
 
 DO NOT upload sensitive data to code management platform
 
-use [dotenv](https://www.npmjs.com/package/dotenv) to configure environment variables
-
 this project need to configure environment variables locally to connect to the database normally, the steps are as follows:
 
 1. create env directory in the root directory
@@ -31,16 +29,30 @@ this project need to configure environment variables locally to connect to the d
 3. configure the environment variables in the configuration file, for example:
 
 ```
-DB_HostDB_HOST=your database host
+DB_HOST=your database host
+DB_PORT=your database port
 DB_USER=your database user
 DB_PASSWORD=your database password
 DB_DATABASE=your database name
 ```
 
-4. add the following code to the entry file of the project(server.ts), for example:
+4. add the following code to the utils/database.ts file, for example:
 
 ```
-import dotenv from 'dotenv'
+import path from 'path'
+import fs from 'fs'
+import * as dotenv from 'dotenv'
 
-dotenv.config({ path: `env/.env.${process.env.NODE_ENV}` })
+...
+
+// Load environment variables
+const fileContent = fs.readFileSync(path.join(__dirname, `../../env/.env.${process.env.NODE_ENV}`), 'utf8')
+const { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_DATABASE } = dotenv.parse(fileContent)
+
+...
+
 ```
+
+## License
+
+blog-server is licensed under the [MIT license](https://opensource.org/licenses/MIT).
