@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express'
 import sequelize from './utils/database'
 import postRoutes from './routes/postRoutes'
+import tagRoutes from './routes/tagRoutes'
 
 const app = express()
 const port = 3000
@@ -11,6 +12,7 @@ app.use(express.urlencoded({ extended: true }))
 
 // Routes
 app.use('/posts', postRoutes)
+app.use('/tags', tagRoutes)
 
 
 app.get('/', (req: Request, res: Response) => {
