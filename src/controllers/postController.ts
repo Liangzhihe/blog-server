@@ -32,11 +32,15 @@ export const postController = {
 
   getPostList: async (req: Request, res: Response) => {
     try {
-      const options = req.params as IPostFilterOptions
-      const [posts, count] = await Promise.all([
-        Post.getPostList(options),
-        Post.getPostCount()
-      ])
+      const options: IPostFilterOptions = {
+        tagIds: req.query.tagIds as string[],
+        title: req.query.title as string,
+        page: parseInt(req.query.page as string),
+        pageSize: parseInt(req.query.pageSize as string),
+      }
+
+      const posts = await Post.getPostList(options)
+      const count = posts.length
       if (options.page && options.pageSize) {
         res.json({ posts, count, page: options.page, pageSize: options.pageSize })
       } else {
