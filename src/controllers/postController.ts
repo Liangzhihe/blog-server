@@ -86,5 +86,34 @@ export const postController = {
       console.error('Error deleting post:', error)
       res.status(500).json({ message: 'Internal Server Error' })
     }
+  },
+
+  addTag: async (req: Request, res: Response) => {
+    try {
+      console.log(req, req.params)
+      const result = await Post.addTag(req.params.id, req.params.tagId)
+      if (result) {
+        res.json({ message: 'Tag added to post' })
+      } else {
+        res.status(404).json({ message: 'Post or tag not found' })
+      }
+    } catch (error) {
+      console.error('Error adding tag to post:', error)
+      res.status(500).json({ message: 'Internal Server Error' })
+    }
+  },
+
+  removeTag: async (req: Request, res: Response) => {
+    try {
+      const result = await Post.removeTag(req.params.id, req.params.tagId)
+      if (result) {
+        res.json({ message: 'Tag removed from post' })
+      } else {
+        res.status(404).json({ message: 'Post or tag not found' })
+      }
+    } catch (error) {
+      console.error('Error removing tag from post:', error)
+      res.status(500).json({ message: 'Internal Server Error' })
+    }
   }
 }

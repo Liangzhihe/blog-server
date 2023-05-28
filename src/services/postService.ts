@@ -9,7 +9,6 @@ import {
 } from 'sequelize-typescript'
 import Tag from './tagService'
 
-
 export interface IPostFilterOptions {
   tagIds?: string[]
   title?: string
@@ -17,9 +16,13 @@ export interface IPostFilterOptions {
   pageSize?: number
 }
 
-@Table({ tableName: 'posts' })
+@Table({ tableName: 'posts', underscored: true })
 export default class Post extends Model {
-  @Column({ primaryKey: true, type: DataType.UUID, defaultValue: DataTypes.UUIDV4 })
+  @Column({
+    primaryKey: true,
+    type: DataType.UUID,
+    defaultValue: DataTypes.UUIDV4,
+  })
   id!: string
 
   @Column({ type: DataType.STRING })
@@ -29,11 +32,9 @@ export default class Post extends Model {
   content!: string
 
   @CreatedAt
-  @Column({ field: 'created_at', type: DataType.DATE })
   createdAt!: Date
 
   @UpdatedAt
-  @Column({ field: 'updated_at', type: DataType.DATE })
   updatedAt!: Date
 
   static getAllPosts = async (): Promise<Post[]> => {
@@ -100,5 +101,30 @@ export default class Post extends Model {
   static deletePost = async (id: string): Promise<boolean> => {
     const affectedRows = await Post.destroy({ where: { id } })
     return affectedRows > 0
+  }
+
+  // Tag methods
+  static addTag = async (postId: string, tagId: string): Promise<boolean> => {
+    const [post, tag] = await Promise.all([
+      Post.findByPk(postId),
+      Tag.findByPk(tagId),
+    ])
+    if (post && tag) {
+      await post.$add('tag', tag)
+      return true
+    }
+    return false
+  }
+
+  static removeTag = async (postId: string, tagId: string): Promise<boolean> => {
+    const [post, tag] = await Promise.all([
+      Post.findByPk(postId),
+      Tag.findByPk(tagId),
+    ])
+    if (post && tag) {
+      await post.$remove('tag', tag)
+      return true
+    }
+    return false
   }
 }
