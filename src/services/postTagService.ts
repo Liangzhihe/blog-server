@@ -16,7 +16,6 @@ export default class PostTag extends Model {
   @PrimaryKey
   @Column({
     type: DataType.INTEGER,
-    defaultValue: DataType.INTEGER,
     autoIncrement: true,
   })
   id!: number
