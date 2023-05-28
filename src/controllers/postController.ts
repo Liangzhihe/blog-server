@@ -90,7 +90,6 @@ export const postController = {
 
   addTag: async (req: Request, res: Response) => {
     try {
-      console.log(req, req.params)
       const result = await Post.addTag(req.params.id, req.params.tagId)
       if (result) {
         res.json({ message: 'Tag added to post' })
