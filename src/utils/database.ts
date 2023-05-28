@@ -20,4 +20,8 @@ const sequelize = new Sequelize({
   models: [path.join(__dirname, '../services')],
 })
 
+// mutiple to mutiple relationship: Post <-> Tag
+sequelize.models.Post.belongsToMany(sequelize.models.Tag, { through: sequelize.models.PostTag })
+sequelize.models.Tag.belongsToMany(sequelize.models.Post, { through: sequelize.models.PostTag })
+
 export default sequelize
