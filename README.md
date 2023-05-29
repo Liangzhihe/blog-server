@@ -29,11 +29,21 @@ this project need to configure environment variables locally to connect to the d
 3. configure the environment variables in the configuration file, for example:
 
 ```
+# Description: xxx environment variables
+# database config
 DB_HOST=your database host
 DB_PORT=your database port
 DB_USER=your database user
 DB_PASSWORD=your database password
 DB_DATABASE=your database name
+
+# super admin password
+SUPER_ADMIN_PASSWORD=your super admin password
+
+# jwt config
+JWT_SECRET=your jwt access secret
+JWT_REFRESH_SECRET=your jwt refresh secret
+
 ```
 
 4. add the following code to the utils/database.ts file, for example:
