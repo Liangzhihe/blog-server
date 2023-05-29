@@ -1,12 +1,5 @@
 import { DataTypes, FindOptions } from 'sequelize'
-import {
-  Model,
-  Table,
-  Column,
-  DataType,
-  UpdatedAt,
-  CreatedAt,
-} from 'sequelize-typescript'
+import { Model, Table, Column, DataType, UpdatedAt, CreatedAt } from 'sequelize-typescript'
 import Tag from './tagService'
 
 export interface IPostFilterOptions {
@@ -18,11 +11,7 @@ export interface IPostFilterOptions {
 
 @Table({ tableName: 'posts', underscored: true })
 export default class Post extends Model {
-  @Column({
-    primaryKey: true,
-    type: DataType.UUID,
-    defaultValue: DataTypes.UUIDV4,
-  })
+  @Column({ primaryKey: true, type: DataType.UUID, defaultValue: DataTypes.UUIDV4 })
   id!: string
 
   @Column({ type: DataType.STRING })
@@ -78,11 +67,7 @@ export default class Post extends Model {
     return await Post.create({ title, content })
   }
 
-  static updatePost = async (
-    id: string,
-    title: string,
-    content: string
-  ): Promise<Post | null> => {
+  static updatePost = async (id: string, title: string, content: string): Promise<Post | null> => {
     const [affectedRows] = await Post.update(
       {
         title,
@@ -105,10 +90,7 @@ export default class Post extends Model {
 
   // Tag methods
   static addTag = async (postId: string, tagId: string): Promise<boolean> => {
-    const [post, tag] = await Promise.all([
-      Post.findByPk(postId),
-      Tag.findByPk(tagId),
-    ])
+    const [post, tag] = await Promise.all([Post.findByPk(postId), Tag.findByPk(tagId)])
     if (post && tag) {
       await post.$add('tag', tag)
       return true
@@ -117,10 +99,7 @@ export default class Post extends Model {
   }
 
   static removeTag = async (postId: string, tagId: string): Promise<boolean> => {
-    const [post, tag] = await Promise.all([
-      Post.findByPk(postId),
-      Tag.findByPk(tagId),
-    ])
+    const [post, tag] = await Promise.all([Post.findByPk(postId), Tag.findByPk(tagId)])
     if (post && tag) {
       await post.$remove('tag', tag)
       return true
