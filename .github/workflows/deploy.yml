@@ -13,6 +13,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
       - name: SSH into server
         uses: appleboy/ssh-action@master
         with:
@@ -20,11 +26,5 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           password: ${{ secrets.SERVER_PASSWORD }}
 
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build
-        run: npm run build
-
       - name: Restart server
-        run: sudo pm2 start ecosystem.config.js
+        run: cd /blog-server && git pull && pm2 restart ecosystem.config.js
