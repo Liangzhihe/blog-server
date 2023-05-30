@@ -3,7 +3,7 @@ module.exports = {
   apps: [
     {
       name: "blog-server",
-      script: "dist/server.ts",
+      script: "dist/server.js",
       exec_mode: "cluster",
       instances: "max",
       autorestart: true,

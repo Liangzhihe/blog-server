@@ -32,17 +32,18 @@ export const postController = {
 
   getPostList: async (req: Request, res: Response) => {
     try {
-      const options: IPostFilterOptions = {
-        tagIds: req.query.tagIds as string[],
-        title: req.query.title as string,
-        page: parseInt(req.query.page as string),
-        pageSize: parseInt(req.query.pageSize as string),
-      }
+      const tagIds = req.query.tagIds as string[] || undefined
+      const title = req.query.title as string || undefined
+      const page = parseInt(req.query.page as string) || undefined
+      const pageSize = parseInt(req.query.pageSize as string) || undefined
 
-      const posts = await Post.getPostList(options)
-      const count = posts.length
-      if (options.page && options.pageSize) {
-        res.json({ posts, count, page: options.page, pageSize: options.pageSize })
+      const [ posts, postsWithoutLimit ] = await Promise.all([
+        Post.getPostList({ tagIds, title, page, pageSize }),
+        Post.getPostList({ tagIds, title }),
+      ])
+      const count = postsWithoutLimit.length
+      if (page && pageSize) {
+        res.json({ posts, count, page: page, pageSize: pageSize })
       } else {
         res.json({posts, count})
       }
