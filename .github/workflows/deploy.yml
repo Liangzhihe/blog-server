@@ -13,11 +13,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Install dependencies
-        run: npm install
+      # - name: Install dependencies
+      #   run: npm install
 
-      - name: Build
-        run: npm run build
+      # - name: Build
+      #   run: npm run build
 
       - name: Deploy to server
         uses: appleboy/ssh-action@master
@@ -28,4 +28,6 @@ jobs:
           script: |
             cd /root/blog-server
             git pull
+            npm install
+            npm run build
             pm2 restart ecosystem.config.js
