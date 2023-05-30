@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "npx eslint --ext .ts src/",
-    "start": "NODE_ENV==production ts-node src/server.ts",
+    "build": "npx tsc",
     "dev": "NODE_ENV=development nodemon --exec ts-node src/server.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
