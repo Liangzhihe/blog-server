@@ -25,7 +25,7 @@ jobs:
           FLAGS: -avzr --delete
           USER: ${{ secrets.SERVER_USERNAME }}
           HOST: ${{ secrets.SERVER_HOST }}
-          LOCALPATH: /dist
+          LOCALPATH: dist
           REMOTEPATH: /${{ secrets.SERVER_USERNAME }}/blog-server
           DEPLOY_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
@@ -36,5 +36,5 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /${{ secrets.SERVER_USERNAME }}/blog-server
+            cd ${{ github.workspace }}
             pm2 restart ecosystem.config.js
