@@ -13,11 +13,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # - name: Install dependencies
-      #   run: npm install
+      - name: Install dependencies
+        run: npm install
 
-      # - name: Build
-      #   run: npm run build
+      - name: Build
+        run: npm run build
+
+      - name: Deploy to server
+        uses: contention/rsync-deployments@v2.0.0
+        with:
+          FLAGS: -avzr --delete
+          USER: ${{ secrets.SERVER_USERNAME }}
+          HOST: ${{ secrets.SERVER_HOST }}
+          LOCALPATH: /dist
+          REMOTEPATH: /${{ secrets.SERVER_USERNAME }}/blog-server
+          DEPLOY_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Deploy to server
         uses: appleboy/ssh-action@master
@@ -26,8 +36,5 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /root/blog-server
-            git pull
-            npm install
-            npm run build
+            cd /${{ secrets.SERVER_USERNAME }}/blog-server
             pm2 restart ecosystem.config.js
