@@ -29,7 +29,7 @@ export default class Tag extends Model {
     return await Tag.count()
   }
 
-  static getTagByPostId = async (postId: string): Promise<Tag[]> => {
+  static getTagsByPostId = async (postId: string): Promise<Tag[]> => {
     return await Tag.findAll({
       include: [
         {

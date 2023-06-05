@@ -1,5 +1,6 @@
 import { Request, Response } from 'express'
 import Post, { IPostFilterOptions } from '../services/postService'
+import Tag from '../services/tagService'
 
 export const postController = {
   // get all posts
@@ -117,6 +118,20 @@ export const postController = {
       }
     } catch (error) {
       console.error('Error removing tag from post:', error)
+      res.status(500).json({ message: 'Internal Server Error' })
+    }
+  },
+
+  getPostTags: async (req: Request, res: Response) => {
+    try {
+      const tags = await Tag.getTagsByPostId(req.params.id)
+      if (tags) {
+        res.json(tags)
+      } else {
+        res.status(404).json({ message: 'Post not found' })
+      }
+    } catch (error) {
+      console.error('Error retrieving post tags:', error)
       res.status(500).json({ message: 'Internal Server Error' })
     }
   }
