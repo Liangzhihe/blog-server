@@ -23,12 +23,13 @@ jobs:
       - name: Deploy to server
         uses: contention/rsync-deployments@v2.0.0
         with:
-          FLAGS: -avz --delete
-          USER: ${{ secrets.SERVER_USERNAME }}
-          HOST: ${{ secrets.SERVER_HOST }}
-          LOCALPATH: dist
-          REMOTEPATH: /${{ secrets.SERVER_USERNAME }}/blog-server
-          DEPLOY_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          flags: -avz --delete
+          user: ${{ secrets.SERVER_USERNAME }}
+          host: ${{ secrets.SERVER_HOST }}
+          localpath: dist
+          remotepath: /${{ secrets.SERVER_USERNAME }}/blog-server
+          deploy_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          excludes: ""
 
       - name: Restart server
         uses: appleboy/ssh-action@master
