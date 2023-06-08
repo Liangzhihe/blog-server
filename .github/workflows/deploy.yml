@@ -1,9 +1,10 @@
-name: Deploy to Ubuntu Server
+name: Deploy Post API Service to Ubuntu Server
 
 on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   deploy:

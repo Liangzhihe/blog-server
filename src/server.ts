@@ -1,5 +1,6 @@
 import express, { Request, Response } from 'express'
 import * as dotenv from 'dotenv'
+import cors from 'cors'
 import path from 'path'
 import sequelize from './utils/database'
 import postRoutes from './routes/postRoutes'
@@ -16,6 +17,7 @@ const port = 3000
 // Basic middleware
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+app.use(cors())
 
 // Routes
 app.use('/posts', postRoutes)
