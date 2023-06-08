@@ -23,7 +23,7 @@ jobs:
       - name: Deploy to server
         uses: contention/rsync-deployments@v2.0.0
         with:
-          flags: -avz --delete
+          flags: -avzr --delete
           user: ${{ secrets.SERVER_USERNAME }}
           host: ${{ secrets.SERVER_HOST }}
           localpath: dist
