@@ -1,8 +1,8 @@
 {
   "name": "blog-server",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "a simple blog server",
+  "main": "server.ts",
   "scripts": {
     "lint": "npx eslint --ext .ts src/",
     "build": "npx tsc",
