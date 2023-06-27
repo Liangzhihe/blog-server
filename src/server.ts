@@ -11,7 +11,7 @@ import { userController } from './controllers/userController'
 
 dotenv.config({ path: path.join(__dirname, `../env/.env.${process.env.NODE_ENV}`) })
 
-const app = express()
+export const app = express()
 const port = 3000
 
 // Basic middleware
