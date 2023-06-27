@@ -27,6 +27,17 @@ describe('Login tests', () => {
   })
 })
 
+describe('Login Wrong Password tests', () => {
+  it('should return 401 and accessToken,refreshToken', async () => {
+    const response = await request(app).post('/users/login').send({
+      name: 'admin',
+      password: 'admin'
+    })
+
+    expect(response.status).toBe(401)
+  })
+})
+
 describe('Create Post tests', () => {
   it('should return 200', async () => {
     const response = await request(app).post('/posts')
@@ -61,5 +72,20 @@ describe('Get All Posts tests', () => {
     expect(response.status).toBe(200)
     expect(response.body).toHaveProperty('posts')
     expect(response.body).toHaveProperty('count')
+    expect(response.body.count).toEqual(1)
+  })
+})
+
+describe('Get Post By Id tests', () => {
+  it('should return Post', async () => {
+    const response = await request(app).get(`/posts/${postId}`)
+
+    expect(response.status).toBe(200)
+    expect(response.body).toHaveProperty('id')
+    expect(response.body).toHaveProperty('title')
+    expect(response.body).toHaveProperty('content')
+    expect(response.body).toHaveProperty('createdAt')
+    expect(response.body).toHaveProperty('updatedAt')
+    expect(response.body.title).toEqual('test3')
   })
 })
