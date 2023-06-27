@@ -63,6 +63,52 @@ const { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_DATABASE } = dotenv.parse(fil
 
 ```
 
+## husky+commitlint+commitizen
+
+#### install husky, commitlint and commitizen
+```bash
+npm install --save-dev husky @commitlint/{config-conventional,cli} commitizen
+```
+  
+#### init husky
+```bash
+npx husky install
+```
+
+#### init commitlint
+##### make .commitlintrc.json file and add the following code
+```json
+{
+  "extends": ["@commitlint/config-conventional"]
+}
+```
+##### or js file, just run the following code
+```bash
+echo "module.exports = {extends: ['@commitlint/config-conventional']}" > .commitlintrc.js
+```
+
+#### update pkg.json
+```json
+"scripts": {
+  "commit": "cz"
+},
+"config": {
+  "commitizen": {
+    "path": "cz-conventional-changelog"
+  }
+}
+```
+
+#### add husky hook
+```bash
+npx husky add .husky/pre-commit "npx --no -- commitlint --from=main --quiet"
+```
+
+#### when commit, use `npm run commit` instead of `git commit`
+```bash
+npm run commit
+```
+
 ## License
 
 blog-server is licensed under the [MIT license](https://opensource.org/licenses/MIT).
