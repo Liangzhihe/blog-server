@@ -28,7 +28,7 @@ describe('Login tests', () => {
 })
 
 describe('Login Wrong Password tests', () => {
-  it('should return 401 and accessToken,refreshToken', async () => {
+  it('should return 401', async () => {
     const response = await request(app).post('/users/login').send({
       name: 'admin',
       password: 'admin'
@@ -53,7 +53,7 @@ describe('Create Post tests', () => {
 })
 
 describe('Update Post tests', () => {
-  it('should return 200', async () => {
+  it('should return 200 and post title was change', async () => {
     const response = await request(app).put(`/posts/${postId}`)
     .set('Authorization', `Bearer ${accessToken}`)
     .send({
@@ -62,11 +62,12 @@ describe('Update Post tests', () => {
     })
 
     expect(response.status).toBe(200)
+    expect(response.body.title).toEqual('test3')
   })
 })
 
 describe('Get All Posts tests', () => {
-  it('should return List', async () => {
+  it('should return all list', async () => {
     const response = await request(app).get('/posts')
 
     expect(response.status).toBe(200)
@@ -77,7 +78,7 @@ describe('Get All Posts tests', () => {
 })
 
 describe('Get Post By Id tests', () => {
-  it('should return Post', async () => {
+  it('should return the post', async () => {
     const response = await request(app).get(`/posts/${postId}`)
 
     expect(response.status).toBe(200)
@@ -87,5 +88,6 @@ describe('Get Post By Id tests', () => {
     expect(response.body).toHaveProperty('createdAt')
     expect(response.body).toHaveProperty('updatedAt')
     expect(response.body.title).toEqual('test3')
+    expect(response.body.id).toEqual(postId)
   })
 })
