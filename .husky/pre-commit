@@ -1,22 +1,24 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-# 检查变动的文件
+# echo "Running pre-commit hook"
+
+# 检查变动的文件:此处不知为何该句报错
 changedFiles=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(js|jsx|ts|tsx)$')
 
 # 定义需要进行测试的文件夹
-testDirs=("src", "test")
+testDirs=("src" "test")
 
 # 判断是否进行测试
 shouldTest=false
 
 for file in $changedFiles; do
-  dir=$(dirname $file)
-  if [[ " ${testDirs[*]} " == *" $dir "* ]]; then
-    shouldTest=true
-    break
-  fi
-
+  for dir in "${testDirs[@]}"; do
+    if [[ $file == $dir/**/* || $file == $dir/* ]]; then
+      shouldTest=true
+      break 2  # 跳出外层和内层循环
+    fi
+  done
 done
 
 # 运行测试，生成测试报告
@@ -27,5 +29,5 @@ if [ "$shouldTest" = true ]; then
   git add coverage
 fi
 
-# 运行代码风格检查，自动修复
+# 运行代码风格检查
 npx --no -- commitlint --from=main --quiet

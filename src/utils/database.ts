@@ -10,6 +10,7 @@ const envFileContent = fs.readFileSync(
 )
 const { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_DATABASE } = dotenv.parse(envFileContent)
 
+
 const sequelize = new Sequelize({
   dialect: 'mysql',
   database: DB_DATABASE || 'test',
