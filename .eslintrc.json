@@ -5,10 +5,6 @@
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended"
   ],
-  "exclude": [
-    "node_modules",
-    "dist"
-  ],
   "rules": {
     "semi": ["error", "never"]
   }
