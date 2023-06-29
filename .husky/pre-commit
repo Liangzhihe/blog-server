@@ -3,4 +3,6 @@
 
 npm test
 
+git add coverage
+
 npx --no -- commitlint --from=main --quiet
