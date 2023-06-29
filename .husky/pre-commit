@@ -1,8 +1,11 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
+# 运行测试，生成测试报告
 npm test
 
+# 将测试报告放到暂存区，一起提交
 git add coverage
 
+# 运行代码风格检查，自动修复
 npx --no -- commitlint --from=main --quiet
