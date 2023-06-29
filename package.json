@@ -7,7 +7,7 @@
     "lint": "npx eslint --ext .ts src/",
     "build": "npx tsc",
     "dev": "NODE_ENV=development nodemon --exec ts-node src/server.ts",
-    "test": "NODE_ENV=test npx jest",
+    "test": "NODE_ENV=test npx jest --coverage",
     "prepare": "husky install",
     "commit": "cz"
   },
