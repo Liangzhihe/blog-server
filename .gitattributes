@@ -1,2 +1,2 @@
 # 忽略指定目录下的文件语言统计
-coverage/* linguist-vendored
+coverage/** linguist-vendored
