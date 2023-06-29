@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import Post, { IPostFilterOptions } from '../services/postService'
+import Post from '../services/postService'
 import Tag from '../services/tagService'
 
 export const postController = {
