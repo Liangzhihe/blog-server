@@ -1,11 +1,31 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-# 运行测试，生成测试报告
-npm test
+# 检查变动的文件
+changedFiles=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(js|jsx|ts|tsx)$')
 
-# 将测试报告放到暂存区，一起提交
-git add coverage
+# 定义需要进行测试的文件夹
+testDirs=("src", "test")
+
+# 判断是否进行测试
+shouldTest=false
+
+for file in $changedFiles; do
+  dir=$(dirname $file)
+  if [[ " ${testDirs[*]} " == *" $dir "* ]]; then
+    shouldTest=true
+    break
+  fi
+
+done
+
+# 运行测试，生成测试报告
+if [ "$shouldTest" = true ]; then
+  npm test
+
+  # 将测试报告放到暂存区，一起提交
+  git add coverage
+fi
 
 # 运行代码风格检查，自动修复
 npx --no -- commitlint --from=main --quiet

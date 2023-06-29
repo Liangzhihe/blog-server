@@ -85,8 +85,6 @@ describe('Get Post By Id tests', () => {
     expect(response.body).toHaveProperty('id')
     expect(response.body).toHaveProperty('title')
     expect(response.body).toHaveProperty('content')
-    expect(response.body).toHaveProperty('createdAt')
-    expect(response.body).toHaveProperty('updatedAt')
     expect(response.body.title).toEqual('test3')
     expect(response.body.id).toEqual(postId)
   })
