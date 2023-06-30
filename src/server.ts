@@ -3,6 +3,7 @@ import * as dotenv from 'dotenv'
 import cors from 'cors'
 import path from 'path'
 import sequelize from './utils/database'
+import useSwagger from './utils/swaggerConfig'
 import postRoutes from './routes/postRoutes'
 import tagRoutes from './routes/tagRoutes'
 import userRoutes from './routes/userRoutes'
@@ -23,6 +24,8 @@ app.use(cors())
 app.use('/posts', postRoutes)
 app.use('/tags', tagRoutes)
 app.use('/users', userRoutes)
+
+useSwagger(app)
 
 
 app.get('/', (req: Request, res: Response) => {

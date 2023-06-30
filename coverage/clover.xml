@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1688022340911" clover="3.2.0">
-  <project timestamp="1688022340911" name="All files">
-    <metrics statements="337" coveredstatements="185" conditionals="75" coveredconditionals="18" methods="78" coveredmethods="33" elements="490" coveredelements="236" complexity="0" loc="337" ncloc="337" packages="5" files="13" classes="13"/>
+<coverage generated="1688119670276" clover="3.2.0">
+  <project timestamp="1688119670276" name="All files">
+    <metrics statements="345" coveredstatements="193" conditionals="75" coveredconditionals="18" methods="79" coveredmethods="34" elements="499" coveredelements="245" complexity="0" loc="345" ncloc="345" packages="5" files="14" classes="14"/>
     <package name="src">
-      <metrics statements="25" coveredstatements="23" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="2"/>
+      <metrics statements="27" coveredstatements="25" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="2"/>
       <file name="server.ts" path="/Users/liangzhihe/Desktop/code/blog/blog-server/src/server.ts">
-        <metrics statements="25" coveredstatements="23" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="2"/>
+        <metrics statements="27" coveredstatements="25" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -15,22 +15,24 @@
         <line num="7" count="1" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
         <line num="9" count="1" type="stmt"/>
-        <line num="12" count="1" type="stmt"/>
-        <line num="14" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
         <line num="15" count="1" type="stmt"/>
-        <line num="18" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
         <line num="19" count="1" type="stmt"/>
         <line num="20" count="1" type="stmt"/>
-        <line num="23" count="1" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
         <line num="24" count="1" type="stmt"/>
         <line num="25" count="1" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
         <line num="28" count="1" type="stmt"/>
-        <line num="29" count="1" type="stmt"/>
-        <line num="33" count="1" type="stmt"/>
+        <line num="31" count="1" type="stmt"/>
+        <line num="32" count="1" type="stmt"/>
         <line num="36" count="1" type="stmt"/>
-        <line num="37" count="0" type="stmt"/>
-        <line num="38" count="0" type="stmt"/>
-        <line num="41" count="1" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="44" count="1" type="stmt"/>
       </file>
     </package>
     <package name="src.controllers">
@@ -232,10 +234,10 @@
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
-        <line num="7" count="1" type="stmt"/>
-        <line num="9" count="1" type="stmt"/>
-        <line num="11" count="1" type="stmt"/>
-        <line num="13" count="1" type="stmt"/>
+        <line num="44" count="1" type="stmt"/>
+        <line num="46" count="1" type="stmt"/>
+        <line num="48" count="1" type="stmt"/>
+        <line num="50" count="1" type="stmt"/>
       </file>
     </package>
     <package name="src.services">
@@ -372,7 +374,7 @@
       </file>
     </package>
     <package name="src.utils">
-      <metrics statements="13" coveredstatements="13" conditionals="12" coveredconditionals="6" methods="1" coveredmethods="1"/>
+      <metrics statements="19" coveredstatements="19" conditionals="12" coveredconditionals="6" methods="2" coveredmethods="2"/>
       <file name="authmiddleware.ts" path="/Users/liangzhihe/Desktop/code/blog/blog-server/src/utils/authmiddleware.ts">
         <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
@@ -391,6 +393,15 @@
         <line num="25" count="1" type="stmt"/>
         <line num="26" count="1" type="stmt"/>
         <line num="28" count="1" type="stmt"/>
+      </file>
+      <file name="swaggerConfig.ts" path="/Users/liangzhihe/Desktop/code/blog/blog-server/src/utils/swaggerConfig.ts">
+        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
       </file>
     </package>
   </project>
